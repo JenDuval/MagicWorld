@@ -3,7 +3,7 @@ package com.magicworld;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.magicworld.Main.nbPlayer;
+import static com.magicworld.Start.nbPlayer;
 
 class SetUp {
     private static int nbCharacter;
@@ -56,14 +56,14 @@ class SetUp {
             System.out.println("Les points de compétence ne peuvent pas être supérieur à votre niveau.");
             System.out.println("Vous avez donc " + nbLevel + "points de comptence à mettre dans les trois comptence demander.");
             System.out.println("Veillez recréé votre personnage !");
-            this.created();
+            this.recreated();
         }
     }
 
     /**
      * Check if the player's level is less than or equal to 100 and is greater than or equal to 1.
      */
-    private void validity() {
+    private void checkFeatures() {
         if (nbLevel >= 1 && nbLevel <= 100)
         {
             System.out.println("Force du Personnage ?");
@@ -81,16 +81,16 @@ class SetUp {
                 System.out.println("Le niveau de votre personnage est trop bas. Il ne être inférieur à 1.");
 
             System.out.println("Veillez recréé votre personnage !");
-            this.created();
+            this.recreated();
         }
     }
 
-    private void character() {
+    private void checkCharacter() {
         if ( nbCharacter >= 1 && nbCharacter <= 3)
             this.created();
         else {
             System.out.println("Vous n'avez pas choisi de classe parmi les choix proposés");
-            this.run();
+            this.created();
         }
 
     }
@@ -98,11 +98,11 @@ class SetUp {
     /**
      * Run asking process for this game.
      */
-    public void run() {
+    public void created() {
         this.displayCharacter();
         try {
             nbCharacter = sc.nextInt();
-            this.character();
+            this.checkCharacter();
         } catch (InputMismatchException e) {
             sc.next();
             System.out.println("Vous devez saisir un nombre !");
@@ -114,9 +114,9 @@ class SetUp {
     /**
      * Run asking process 2 for this game.
      */
-    public void created() {
+    public void recreated() {
         System.out.println("Niveau du Personnage ?");
         nbLevel = sc.nextInt();
-        this.validity();
+        this.checkFeatures();
     }
 }
