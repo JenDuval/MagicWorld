@@ -1,8 +1,8 @@
-import com.magicworld.Start;
+import com.magicworld.player.Player;
 
 public class Main {
     public static void main(String[] args) {
-        Start start = new Start();
-        Start.started();
+        Player player = new Player();
+        player.selectGrade();
     }
 }
