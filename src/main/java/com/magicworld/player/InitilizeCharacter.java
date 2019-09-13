@@ -1,6 +1,4 @@
-package com.magicworld.character;
-
-import com.magicworld.player.Player;
+package com.magicworld.player;
 
 import java.util.Scanner;
 
@@ -10,7 +8,7 @@ import static com.magicworld.player.Player.nbPlayer;
 public class InitilizeCharacter{
     Scanner sc = new Scanner(System.in);
 
-    public void assignFeatures(int level) {
+    public void assignFeatures(Integer level){
         Player player = new Player();
         if (level >= 1 && level <= 100)
         {
@@ -33,7 +31,7 @@ public class InitilizeCharacter{
         }
     }
 
-    private void checkFeatures(int level,int strength, int agility, int intelligence) {
+    private void checkFeatures(int level,int strength, int agility, int intelligence){
         int feature = strength+agility+intelligence;
 
         if (feature <= level)
@@ -47,7 +45,7 @@ public class InitilizeCharacter{
         }
     }
 
-    private void created(int nbGrade, int level, int strength, int agility, int intelligence) {
+    private void created(int nbGrade, int level, int strength, int agility, int intelligence){
         Player player = new Player();
         int life = level*5;
 

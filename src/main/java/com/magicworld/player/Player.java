@@ -1,9 +1,5 @@
 package com.magicworld.player;
 
-import com.magicworld.character.InitilizeCharacter;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Player {
@@ -32,21 +28,16 @@ public class Player {
     }
 
     public void initPlayer(Integer grade, Integer level, Integer strength, Integer agility, Integer intelligence, Integer life){
-        Map<Integer, Integer> player =  new HashMap<>();
-        if(nbPlayer == 1) {
-            player.put(0, grade);
-            player.put(1, level);
-            player.put(2, life);
-            player.put(3, strength);
-            player.put(4, agility);
-            player.put(5, intelligence);
-        }else if(nbPlayer == 2) {
-            player.put(6, grade);
-            player.put(7, level);
-            player.put(8, life);
-            player.put(9, strength);
-            player.put(10, agility);
-            player.put(11, intelligence);
+        Create create = new Create();
+        if(nbPlayer == 1)
+            create.player1(grade, level, life, strength, agility, intelligence);
+        else if(nbPlayer == 2)
+            create.player2("Player 2", grade, level, life, strength, agility, intelligence);
+        else {
+            System.out.println("Une erreur est survenue lors qe la création des joueurs.");
+            System.out.println("Relancer le jeu.");
+            return;
         }
+
     }
 }
