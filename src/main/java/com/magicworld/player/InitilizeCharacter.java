@@ -7,7 +7,7 @@ import java.util.Scanner;
 import static com.magicworld.player.Player.nbGrade;
 import static com.magicworld.player.Player.nbPlayer;
 
-public class InitilizeCharacter implements Character {
+public class InitilizeCharacter{
     Scanner sc = new Scanner(System.in);
 
     public void assignFeatures(int level) {
