@@ -24,7 +24,7 @@ public class Mage implements Attack {
     public void special(Integer player, Integer comp, Integer lifeAdvers, Integer life, Integer level) {
         life = life + (comp*2);
 
-        System.out.println("Le joueur " + player + "utilise Soin " + comp + " en vitalité.");
+        System.out.println("Le joueur " + player + " utilise Soin " + comp + " en vitalité.");
 
         if(!(life == (level*5))){
             life = level*5;

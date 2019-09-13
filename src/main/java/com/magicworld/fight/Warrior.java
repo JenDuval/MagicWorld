@@ -36,9 +36,9 @@ public class Warrior implements Attack {
             lifeP1 = life;
         } else {
             player--;
-            System.out.println("Le joueur " + player + "perd" + comp + " point de vie.");
+            System.out.println("Le joueur " + player + " perd " + comp + " point de vie.");
             player++;
-            System.out.println("Le joueur " + player + "perd" + comp2 + " point de vie.");
+            System.out.println("Le joueur " + player + " perd " + comp2 + " point de vie.");
             lifeP2 = lifeAdvers;
             lifeP1 = life;
         }

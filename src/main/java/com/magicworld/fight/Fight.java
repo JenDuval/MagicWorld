@@ -7,73 +7,31 @@ import static com.magicworld.Features.*;
 public class Fight {
     Scanner sc = new Scanner(System.in);
 
-    public void fightP1(){
-       if(gradeP1 == 1) {
-           Warrior warrior = new Warrior();
-           int select = sc.nextInt();
-           if(select == 1)
-               warrior.basic(player, strengthP1, lifeP2);
-           else if (select == 2)
-               warrior.special(player, strengthP1, lifeP2, lifeP1, levelP1);
-           else
-               System.out.println("Vous avez taper un nombre invalide !");
-       } else if (gradeP1 == 2) {
-           Ranger ranger = new Ranger();
-           int select = sc.nextInt();
-           if(select == 1)
-                   ranger.basic(player, agilityP1, lifeP2);
-           else if (select == 2)
-               ranger.special(player, agilityP1, lifeP2, lifeP1, levelP1);
-           else
-               System.out.println("Vous avez taper un nombre invalide !");
-       } else if (gradeP1 == 3) {
-           Mage mage = new Mage();
-           int select = sc.nextInt();
-           if(select == 1)
-               mage.basic(player, intelligenceP1, lifeP2);
-           else if (select == 2)
-               mage.special(player, intelligenceP1, lifeP2, lifeP1, levelP1);
-           else
-               System.out.println("Vous avez taper un nombre invalide !");
-       } else{
-           System.out.println("Une erreur est survenue !");
-           System.out.println("Merci de relancer le jeu.");
-           return;
-       }
+    public void fightP1(int select) {
+        switch (gradeP1){
+            case 1 :
+                this.warrior(select, player, strengthP1, lifeP1, lifeP2, levelP1);
+                break;
+            case 2 :
+                this.ranger(select, player, strengthP1, lifeP1, lifeP2, levelP1);
+                break;
+            case 3 :
+                this.mage(select, player, strengthP1, lifeP1, lifeP2, levelP1);
+                break;
+        }
     }
 
-    public void fightP2(){
-        if(gradeP2 == 1) {
-            Warrior warrior = new Warrior();
-            int select = sc.nextInt();
-            if(select == 1)
-                warrior.basic(player, strengthP2, lifeP1);
-            else if (select == 2)
-                warrior.special(player, strengthP2, lifeP1, lifeP2, levelP2);
-            else
-                System.out.println("Vous avez taper un nombre invalide !");
-        } else if (gradeP2 == 2) {
-            Ranger ranger = new Ranger();
-            int select = sc.nextInt();
-            if(select == 1)
-                ranger.basic(player, agilityP2, lifeP1);
-            else if (select == 2)
-                ranger.special(player, agilityP2, lifeP1, lifeP2, levelP2);
-            else
-                System.out.println("Vous avez taper un nombre invalide !");
-        } else if (gradeP2 == 3) {
-            Mage mage = new Mage();
-            int select = sc.nextInt();
-            if(select == 1)
-                mage.basic(player, intelligenceP2, lifeP1);
-            else if (select == 2)
-                mage.special(player, intelligenceP2, lifeP1, lifeP2, levelP2);
-            else
-                System.out.println("Vous avez taper un nombre invalide !");
-        } else{
-            System.out.println("Une erreur est survenue !");
-            System.out.println("Merci de relancer le jeu.");
-            return;
+    public void fightP2(int select) {
+        switch (gradeP2) {
+            case 1 :
+                this.warrior(select, player, strengthP2, lifeP2, lifeP1, levelP2);
+                break;
+            case 2 :
+                this.ranger(select, player, agilityP2, lifeP2, lifeP1, levelP2);
+                break;
+            case 3 :
+                this.mage(select, player, intelligenceP2, lifeP2, lifeP1, levelP2);
+                break;
         }
     }
 
@@ -89,13 +47,67 @@ public class Fight {
                 tour = false;
             } else if(player == 1) {
                 System.out.println("Le joueur " + player + " (" + lifeP1 + " Vitalité) veillez utilisé votre action (1 : Attaque Basic, 2 : Attaque Spéciale)");
-                this.fightP1();
+                int select = sc.nextInt();
+                this.validity(select);
                 player++;
             } else {
                 System.out.println("Le joueur " + player + " (" + lifeP2 + " Vitalité) veillez utilisé votre action (1 : Attaque Basic, 2 : Attaque Spéciale)");
-                this.fightP2();
+                int select = sc.nextInt();
+                this.validity(select);
                 player--;
             }
+        }
+    }
+
+    private void warrior(Integer select, Integer player, Integer strength, Integer life, Integer lifeAdvers, Integer level){
+        Warrior warrior = new Warrior();
+        switch (select) {
+            case 1:
+                warrior.basic(player, strength, life);
+                break;
+            case 2:
+                warrior.special(player, strength, life, lifeAdvers, level);
+                break;
+        }
+    }
+
+    private void ranger(Integer select, Integer player, Integer agility, Integer life, Integer lifeAdvers, Integer level){
+        Ranger ranger = new Ranger();
+
+        switch (select) {
+            case 1:
+                ranger.basic(player, agility, life);
+                break;
+            case 2:
+                ranger.special(player, agility, life, lifeAdvers, level);
+                break;
+        }
+    }
+
+    private void mage(Integer select, Integer player, Integer intelligence, Integer life, Integer lifeAdvers, Integer level){
+        Mage mage = new Mage();
+
+        switch (select) {
+            case 1:
+                mage.basic(player, intelligence, life);
+                break;
+            case 2:
+                mage.special(player, intelligence, life, lifeAdvers, level);
+                break;
+        }
+    }
+
+    private void validity(int select) {
+        if ( select >= 1 && select <= 2)
+            if(player == 1)
+                this.fightP1(select);
+            else if(player == 2)
+                this.fightP2(select);
+            else
+                System.out.println("Une erreur est survenue.");
+        else {
+            System.out.println("Vous n'avez pas choisi de classe parmi les choix proposés");
+            this.startFight();
         }
     }
 }
