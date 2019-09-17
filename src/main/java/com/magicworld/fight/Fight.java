@@ -13,10 +13,10 @@ public class Fight {
                 this.warrior(select, player, strengthP1, lifeP1, lifeP2, levelP1);
                 break;
             case 2 :
-                this.ranger(select, player, strengthP1, lifeP1, lifeP2, levelP1);
+                this.ranger(select, player, agilityP1, lifeP1, lifeP2, levelP1);
                 break;
             case 3 :
-                this.mage(select, player, strengthP1, lifeP1, lifeP2, levelP1);
+                this.mage(select, player, intelligenceP1, lifeP1, lifeP2, levelP1);
                 break;
         }
     }
@@ -39,10 +39,10 @@ public class Fight {
         boolean tour = true;
         player = 1;
         while(tour) {
-            if(lifeP1 < 1) {
+            if(lifeP1 <= 0) {
                 System.out.println("Le joueur 1 a perdu !");
                 tour = false;
-            } else if(lifeP2 < 1) {
+            } else if(lifeP2 <= 0) {
                 System.out.println("Le joueur 2 a perdu !");
                 tour = false;
             } else if(player == 1) {
@@ -50,7 +50,7 @@ public class Fight {
                 int select = sc.nextInt();
                 this.validity(select);
                 player++;
-            } else {
+            } else if(player == 2){
                 System.out.println("Le joueur " + player + " (" + lifeP2 + " Vitalité) veillez utilisé votre action (1 : Attaque Basic, 2 : Attaque Spéciale)");
                 int select = sc.nextInt();
                 this.validity(select);
@@ -63,10 +63,10 @@ public class Fight {
         Warrior warrior = new Warrior();
         switch (select) {
             case 1:
-                warrior.basic(player, strength, life);
+                warrior.basic(player, strength, lifeAdvers);
                 break;
             case 2:
-                warrior.special(player, strength, life, lifeAdvers, level);
+                warrior.special(player, strength, lifeAdvers, life, level);
                 break;
         }
     }
@@ -76,10 +76,10 @@ public class Fight {
 
         switch (select) {
             case 1:
-                ranger.basic(player, agility, life);
+                ranger.basic(player, agility, lifeAdvers);
                 break;
             case 2:
-                ranger.special(player, agility, life, lifeAdvers, level);
+                ranger.special(player, agility, lifeAdvers, life, level);
                 break;
         }
     }
@@ -89,10 +89,10 @@ public class Fight {
 
         switch (select) {
             case 1:
-                mage.basic(player, intelligence, life);
+                mage.basic(player, intelligence, lifeAdvers);
                 break;
             case 2:
-                mage.special(player, intelligence, life, lifeAdvers, level);
+                mage.special(player, intelligence, lifeAdvers, life, level);
                 break;
         }
     }
