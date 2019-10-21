@@ -1,13 +1,9 @@
 Exercice du cours java d'OpenClassRooms : Apprenez l'ojet en Java
 
 Vous trouverez ci-dessous, les informations du projet : 
-
 Un mode test a été implémenté dans le main, des personnages sont près-créé.
- 
 Pour utiliser le mode de test il vous suffit d'aller dans le main est changer la 7ème ligne :
-
 "final static boolean MODE_TEST = false;"
-
 Modifier le false en true.
 
 
