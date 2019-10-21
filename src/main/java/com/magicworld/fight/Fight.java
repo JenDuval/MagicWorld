@@ -1,113 +1,72 @@
 package com.magicworld.fight;
 
-import java.util.Scanner;
-
-import static com.magicworld.Features.*;
+import com.magicworld.capture.Captures;
+import com.magicworld.player.Players;
 
 public class Fight {
-    Scanner sc = new Scanner(System.in);
+    static int turn = 1;
 
-    public void fightP1(int select) {
-        switch (gradeP1){
-            case 1 :
-                this.warrior(select, player, strengthP1, lifeP1, lifeP2, levelP1);
-                break;
-            case 2 :
-                this.ranger(select, player, agilityP1, lifeP1, lifeP2, levelP1);
-                break;
-            case 3 :
-                this.mage(select, player, intelligenceP1, lifeP1, lifeP2, levelP1);
-                break;
-        }
-    }
+    /**
+     * Combat between the two players
+     * @param p1 player1: p1 contains all the skills of the player 1
+     * @param p2 player2: p2 contains all the skills of player 2
+     */
+    public static void versus(Players p1, Players p2) {
 
-    public void fightP2(int select) {
-        switch (gradeP2) {
-            case 1 :
-                this.warrior(select, player, strengthP2, lifeP2, lifeP1, levelP2);
-                break;
-            case 2 :
-                this.ranger(select, player, agilityP2, lifeP2, lifeP1, levelP2);
-                break;
-            case 3 :
-                this.mage(select, player, intelligenceP2, lifeP2, lifeP1, levelP2);
-                break;
-        }
-    }
+        Players playerChallenger, playerDefender;
+        int choiceAttack, damages, nbPlayer;
 
-    public void startFight() {
-        boolean tour = true;
-        player = 1;
-        while(tour) {
-            if(lifeP1 <= 0) {
-                System.out.println("Le joueur 1 a perdu !");
-                tour = false;
-            } else if(lifeP2 <= 0) {
-                System.out.println("Le joueur 2 a perdu !");
-                tour = false;
-            } else if(player == 1) {
-                System.out.println("Le joueur " + player + " (" + lifeP1 + " Vitalité) veillez utilisé votre action (1 : Attaque Basic, 2 : Attaque Spéciale)");
-                int select = sc.nextInt();
-                this.validity(select);
-                player++;
-            } else if(player == 2){
-                System.out.println("Le joueur " + player + " (" + lifeP2 + " Vitalité) veillez utilisé votre action (1 : Attaque Basic, 2 : Attaque Spéciale)");
-                int select = sc.nextInt();
-                this.validity(select);
-                player--;
+        do {
+            System.out.println();
+            if (turn % 2 == 1) {
+                playerChallenger = p1;
+                playerDefender = p2;
+                nbPlayer = 2;
+            } else {
+                playerChallenger = p2;
+                playerDefender = p1;
+                nbPlayer = 1;
             }
-        }
-    }
 
-    private void warrior(Integer select, Integer player, Integer strength, Integer life, Integer lifeAdvers, Integer level){
-        Warrior warrior = new Warrior();
-        switch (select) {
-            case 1:
-                warrior.basic(player, strength, lifeAdvers);
-                break;
-            case 2:
-                warrior.special(player, strength, lifeAdvers, life, level);
-                break;
-        }
-    }
+            System.out.println(playerChallenger.name + " (" + playerChallenger.life + " vitalité) " +
+                    "veuillez choisir votre action (1 : Attaque Basique, 2 : Attaque Spéciale)");
+            choiceAttack = Captures.readInt(1, 2);
 
-    private void ranger(Integer select, Integer player, Integer agility, Integer life, Integer lifeAdvers, Integer level){
-        Ranger ranger = new Ranger();
-
-        switch (select) {
-            case 1:
-                ranger.basic(player, agility, lifeAdvers);
-                break;
-            case 2:
-                ranger.special(player, agility, lifeAdvers, life, level);
-                break;
-        }
-    }
-
-    private void mage(Integer select, Integer player, Integer intelligence, Integer life, Integer lifeAdvers, Integer level){
-        Mage mage = new Mage();
-
-        switch (select) {
-            case 1:
-                mage.basic(player, intelligence, lifeAdvers);
-                break;
-            case 2:
-                mage.special(player, intelligence, lifeAdvers, life, level);
-                break;
-        }
-    }
-
-    private void validity(int select) {
-        if ( select >= 1 && select <= 2)
-            if(player == 1)
-                this.fightP1(select);
-            else if(player == 2)
-                this.fightP2(select);
+            if (choiceAttack == 1)
+                damages = playerChallenger.basic(nbPlayer);
             else
-                System.out.println("Une erreur est survenue.");
-        else {
-            System.out.println("Vous n'avez pas choisi de classe parmi les choix proposés");
-            this.startFight();
+                damages = playerChallenger.special(nbPlayer);
+
+            if (!(damages == 0))
+                playerDefender.life -= damages;
+            turn++;
+
+        } while (p1.life > 0 && p2.life > 0);
+
+        Fight.win(playerDefender.life, playerChallenger.life, playerChallenger.name, playerDefender.name);
+
+    }
+
+
+    /**
+     * Determine who to win at the end of the duel
+     * Display the message of death and who win
+     * @param defender the life of the defender player
+     * @param challenger the life of the challenger player
+     * @param namChal the name of the challenger player
+     * @param nameDef the name of the defending player
+     */
+    public static void win(int defender, int challenger, String namChal, String nameDef){
+        if(defender <= 0 && challenger <= 0) {
+            System.out.println(nameDef + " est mort");
+            System.out.println(namChal + " est mort");
+            System.out.println("Match null !!!!");
+        } else if (defender <= 0) {
+            System.out.println(nameDef + " est mort");
+            System.out.println(nameDef + " a perdu !");
+        } else if (challenger <= 0) {
+            System.out.println(namChal + " est mort");
+            System.out.println(namChal + " a perdu !");
         }
     }
 }
