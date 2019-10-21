@@ -15,7 +15,6 @@ class FightTest {
         Players p1, p2;
         p1 = new Warrior("Joueur 1", 10, 10, 0,0);
         p2 = new Mage("Joueur 2", 10, 0, 0,10);
-
          int damages;
 
          for(int i = 0; i <= 7; i++){
