@@ -1,7 +1,7 @@
 package com.magicworld.player;
 
-public class Ranger extends Players {
-    public Ranger(String name, int level, int strength, int agility, int intelligence) {
+public class Rogue extends Players {
+    public Rogue(String name, int level, int strength, int agility, int intelligence) {
         super(name, level, strength, agility, intelligence);
     }
 

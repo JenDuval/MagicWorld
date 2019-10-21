@@ -4,7 +4,7 @@ import com.magicworld.fight.Fight;
 import com.magicworld.player.*;
 
 public class Main {
-    final static boolean MODE_TEST = false;
+    final static boolean MODE_TEST = true;
 
     public static void main(String[] args) {
 

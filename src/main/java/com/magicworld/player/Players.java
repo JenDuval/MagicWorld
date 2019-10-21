@@ -70,7 +70,7 @@ public abstract class Players {
         if (grade == 1)
             return new Warrior(name, level, strength, agility, intelligence);
         else if (grade == 2)
-            return new Ranger(name, level, strength, agility, intelligence);
+            return new Rogue(name, level, strength, agility, intelligence);
         else
             return new Mage(name, level, strength, agility, intelligence);
     }
