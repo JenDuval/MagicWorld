@@ -1,10 +1,13 @@
 package com.magicworld.capture;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CapturesTest {
+public class CapturesTest {
 
     @Test
-    void readInt() {
+    public static void readInt(int min, int max) {
+        int level = min + max;
+        Assertions.assertEquals(10, level);
     }
 }
