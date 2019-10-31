@@ -1,5 +1,10 @@
 package com.magicworld.fight;
 
+/**
+ * @author Duval Jennifer
+ * @version 1.0
+ */
+
 import com.magicworld.capture.Captures;
 import com.magicworld.player.Players;
 

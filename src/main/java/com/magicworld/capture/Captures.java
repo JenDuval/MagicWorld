@@ -1,5 +1,10 @@
 package com.magicworld.capture;
 
+/**
+ * @author Duval Jennifer
+ * @version 1.0
+ */
+
 import java.util.Scanner;
 
 public class Captures {

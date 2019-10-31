@@ -1,5 +1,10 @@
 package com.magicworld.player;
 
+/**
+ * @author Duval Jennifer
+ * @version 1.0
+ */
+
 public class Warrior extends Players {
     int strength2;
 

@@ -1,5 +1,10 @@
 package com.magicworld.player;
 
+/**
+ * @author Duval Jennifer
+ * @version 1.0
+ */
+
 import com.magicworld.capture.Captures;
 
 public abstract class Players {

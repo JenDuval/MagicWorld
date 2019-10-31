@@ -1,4 +1,9 @@
 package com.magicworld;
+/**
+ * @author Duval Jennifer
+ * @version 1.0
+ */
+
 
 import com.magicworld.fight.Fight;
 import com.magicworld.player.*;

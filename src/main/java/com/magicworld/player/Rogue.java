@@ -1,5 +1,10 @@
 package com.magicworld.player;
 
+/**
+ * @author Duval Jennifer
+ * @version 1.0
+ */
+
 public class Rogue extends Players {
     public Rogue(String name, int level, int strength, int agility, int intelligence) {
         super(name, level, strength, agility, intelligence);
