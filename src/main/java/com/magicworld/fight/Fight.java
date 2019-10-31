@@ -17,7 +17,6 @@ public class Fight {
         int choiceAttack, damages, nbPlayer;
 
         do {
-            System.out.println();
             if (turn % 2 == 1) {
                 playerChallenger = p1;
                 playerDefender = p2;
